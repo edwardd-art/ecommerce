@@ -8,13 +8,13 @@ class Product(BaseProduct, LogMixin):
     __price: float
     quantity: int
 
-    def __init__(self, name: str, description: str, price: float, quantity: int):
+    def __init__(self, name: str, description: str, price: float, quantity: int, *args, **kwargs):
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
-        # LogMixin автоматически выведет информацию о создании
-        super().__init__()  # вызываем для миксина (но он уже вызван через MRO)
+        # Передаём все аргументы дальше в миксин
+        super().__init__(name, description, price, quantity, *args, **kwargs)
 
     @property
     def price(self) -> float:
