@@ -1,8 +1,8 @@
 import pytest
 from product import Product
+from category import Category
 from smartphone import Smartphone
 from lawn_grass import LawnGrass
-from category import Category
 
 
 def test_category_add_product_valid():
@@ -41,8 +41,7 @@ def test_category_add_lawn_grass():
     assert Category.product_count == 1
 
 
-def test_category_add_invalid_type():
+def test_category_add_invalid_type_raises_error():
     cat = Category("Cat", "Desc", [])
-
     with pytest.raises(TypeError, match="Можно добавлять только объекты класса Product или его наследников"):
         cat.add_product("not a product")
