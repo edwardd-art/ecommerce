@@ -13,6 +13,7 @@ class Smartphone(Product):
         memory: int,
         color: str
     ):
+        # Передаём только 4 аргумента в родительский класс
         super().__init__(name, description, price, quantity)
         self.efficiency = efficiency
         self.model = model

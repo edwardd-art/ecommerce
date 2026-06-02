@@ -9,12 +9,13 @@ class Product(BaseProduct, LogMixin):
     quantity: int
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
+        if quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
-        # LogMixin автоматически выведет информацию о создании
-        super().__init__()  # вызываем для миксина (но он уже вызван через MRO)
+        super().__init__(name, description, price, quantity)
 
     @property
     def price(self) -> float:

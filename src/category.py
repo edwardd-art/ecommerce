@@ -34,3 +34,13 @@ class Category:
     def __str__(self) -> str:
         total_quantity = sum(product.quantity for product in self.__products)
         return f"{self.name}, количество продуктов: {total_quantity} шт."
+
+    def middle_price(self) -> float:
+        """
+        Возвращает среднюю цену товаров в категории.
+        Если товаров нет, возвращает 0.
+        """
+        if not self.__products:
+            return 0.0
+        total_price = sum(product.price for product in self.__products)
+        return total_price / len(self.__products)
